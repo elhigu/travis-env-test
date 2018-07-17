@@ -1,0 +1,48 @@
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+            - cmake-3.6
+      env:
+        - CC=gcc-6
+        - CXX=g++-6
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+            - cmake-3.6
+      env:
+        - CC=gcc-7
+        - CXX=g++-7"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.6
+          packages:
+            - clang-3.6
+            - cmake-3.6
+      env:
+        - CC=clang-3.6
+        - CXX=clang++-3.6
+    - os: linux
+      addons:
+        apt:
+          packages:
+            - cmake-3.6
+      env:
+        - ANDROID_NDK=/opt/android-ndk-r14b
+
+before_install:
+  - if [ ! -z $ANDROID_NDK ]; then mkdir -p /opt; fi 
+  - if [ ! -z $ANDROID_NDK ]; then cp /opt; wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip; fi 
+  - if [ ! -z $ANDROID_NDK ]; then cd /opt unzip android-ndk-r14b-linux-x86_64.zip; fi
