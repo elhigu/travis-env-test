@@ -1,4 +1,5 @@
 language: cpp
+dist: xenial
 
 matrix:
   include:
@@ -50,5 +51,6 @@ before_install:
   - if [ ! -z $ANDROID_NDK ]; then cd /opt unzip android-ndk-r14b-linux-x86_64.zip; fi
 
 script:
+  - cmake --version
   - ls -la /opt
   - ls -la
