@@ -35,8 +35,12 @@ before_install:
   - if [ ! -z "$ANDROID_NDK" ]; then cd /opt; wget https://cmake.org/files/v3.7/cmake-3.7.2-win64-x64.zip; fi
   - if [ ! -z "$ANDROID_NDK" ]; then cd /opt; unzip -q android-ndk-r14b-linux-x86_64.zip; fi
   - if [ ! -z "$ANDROID_NDK" ]; then cd /opt; unzip -q cmake-3.7.2-win64-x64.zip; fi
+  - cd
 
 script:
+  - export
   - cmake --version
+  - ls -la /opt/cmake-3.7.2-win64-x64/bin
+  - ls -la /opt/cmake-3.7.2-win64-x64
   - ls -la /opt
   - ls -la
