@@ -1,11 +1,9 @@
 language: cpp
 
-# using ubuntu 12 to get old enough cmake
-dist: precise
-
 matrix:
   include:
     - os: linux
+      dist: xenial
       addons:
         apt:
           sources:
@@ -16,6 +14,7 @@ matrix:
         - CC=gcc-6
         - CXX=g++-6
     - os: linux
+      dist: xenial
       addons:
         apt:
           sources:
@@ -27,6 +26,7 @@ matrix:
         - CC=clang-3.6
         - CXX=clang++-3.6
     - os: linux
+      dist: trusty
       env:
         - ANDROID_NDK=/opt/android-ndk-r14b
 
