@@ -1,4 +1,5 @@
 language: cpp
+sudo: true
 
 matrix:
   include:
@@ -29,11 +30,11 @@ matrix:
         - ANDROID_NDK=/opt/android-ndk-r14b
 
 before_install:
-  - if [ ! -z $ANDROID_NDK ]; then mkdir -p /opt; fi 
-  - if [ ! -z $ANDROID_NDK ]; then cp /opt; wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip; fi 
-  - if [ ! -z $ANDROID_NDK ]; then cd /opt wget https://cmake.org/files/v3.7/cmake-3.7.2-win64-x64.zip; fi
-  - if [ ! -z $ANDROID_NDK ]; then cd /opt unzip android-ndk-r14b-linux-x86_64.zip; fi
-  - if [ ! -z $ANDROID_NDK ]; then cd /opt unzip cmake-3.7.2-win64-x64.zip; fi
+  - if [ ! -z "$ANDROID_NDK" ]; then mkdir -p /opt; fi 
+  - if [ ! -z "$ANDROID_NDK" ]; then cd /opt; wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip; fi 
+  - if [ ! -z "$ANDROID_NDK" ]; then cd /opt; wget https://cmake.org/files/v3.7/cmake-3.7.2-win64-x64.zip; fi
+  - if [ ! -z "$ANDROID_NDK" ]; then cd /opt; unzip android-ndk-r14b-linux-x86_64.zip; fi
+  - if [ ! -z "$ANDROID_NDK" ]; then cd /opt; unzip cmake-3.7.2-win64-x64.zip; fi
 
 script:
   - cmake --version
