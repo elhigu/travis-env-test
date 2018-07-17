@@ -11,8 +11,7 @@ matrix:
           packages:
             - g++-6
       env:
-        - OVERRIDE_CC=gcc-6
-        - OVERRIDE_CXX=g++-6
+        - MATRIX_ENV="CC=gcc-6 && CXX=g++-6"
     - addons:
         apt:
           sources:
@@ -21,15 +20,15 @@ matrix:
           packages:
             - clang-3.6
       env:
-        - OVERRIDE_CC=clang-3.6
-        - OVERRIDE_CXX=clang++-3.6
+        - MATRIX_ENV="CC=clang-3.6 && CXX=clang++-3.6"
     - env:
         - PATH=/opt/cmake-3.7.2-Linux-x86_64/bin:$PATH
         - ANDROID_NDK=/opt/android-ndk-r14b
+        - MATRIX_ENV=""
 
+# language environment overrides user env values set in matrix so they are reapplied here
 before_install:
-  - export CXX=$OVERRIDE_CXX
-  - export CC=$OVERRIDE_CC
+  - eval $MATRIX_ENV
   - pushd .
   - if [ ! -z "$ANDROID_NDK" ]; then mkdir -p /opt; fi 
   - if [ ! -z "$ANDROID_NDK" ]; then cd /opt; wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip; fi 
